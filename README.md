@@ -32,6 +32,7 @@ Laravel is accessible, powerful, and provides tools required for large, robust a
 3. 允许跨域请求
 4. 统一格式化返回
 6. Makefile 自动脚本
+7. 基于 RocketMQ 的秒级人物调度
 
 ## 使用
 

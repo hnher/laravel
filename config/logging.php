@@ -37,8 +37,10 @@ return [
     'channels' => [
         'stack' => [
             'driver' => 'stack',
-            'channels' => ['single'],
+            'channels' => ['daily'],
+            'tap' => [App\Logging\JsonFormatter::class],
             'ignore_exceptions' => false,
+            'days' => 1
         ],
 
         'single' => [

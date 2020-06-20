@@ -4,8 +4,54 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "45db727a88c2fc74d6d39540e6b0e7a9",
+    "content-hash": "f345dfc8cc32c7932400357ed8907490",
     "packages": [
+        {
+            "name": "aliyunmq/mq-http-sdk",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/aliyunmq/mq-http-php-sdk.git",
+                "reference": "71e438b799436968e1f8506e102ddeb509c19c98"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/aliyunmq/mq-http-php-sdk/zipball/71e438b799436968e1f8506e102ddeb509c19c98",
+                "reference": "71e438b799436968e1f8506e102ddeb509c19c98",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "guzzlehttp/guzzle": ">=6.0.0",
+                "php": ">=5.5.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "MQ\\": "MQ/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Aliyun Message Queue(MQ) Http PHP SDK, PHP>=5.5.0",
+            "homepage": "https://github.com/aliyunmq/mq-http-php-sdk",
+            "keywords": [
+                "MQ",
+                "alicloud",
+                "aliyun",
+                "message",
+                "message queue",
+                "queue"
+            ],
+            "time": "2019-06-10T03:59:10+00:00"
+        },
         {
             "name": "asm89/stack-cors",
             "version": "v2.0.1",
@@ -7955,7 +8001,9 @@
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
-        "php": "^7.2.5"
+        "php": "^7.2.5",
+        "ext-json": "*",
+        "ext-pdo": "*"
     },
     "platform-dev": [],
     "plugin-api-version": "1.1.0"
