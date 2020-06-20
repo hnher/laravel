@@ -37,7 +37,7 @@ Laravel is accessible, powerful, and provides tools required for large, robust a
 ## 使用
 
 ```bash
-composer create-project hnher/lumen LumenApp
+composer create-project hnher/laravel LaravelApp
 ```
 
 ## Contributing
