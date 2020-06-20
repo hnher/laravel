@@ -1,7 +1,7 @@
 {
     "name": "hnher/laravel",
     "type": "project",
-    "description": "The Laravel Framework.",
+    "description": "Laravel 的手脚架项目",
     "keywords": [
         "framework",
         "laravel"
