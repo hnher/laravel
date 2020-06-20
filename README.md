@@ -40,6 +40,67 @@ Laravel is accessible, powerful, and provides tools required for large, robust a
 composer create-project hnher/laravel LaravelApp
 ```
 
+## 延时任务
+
+延时任务基于阿里云 RocketMQ 和 pm2 搭建。RocketMQ 作为消息传递、pm2 作为进程守护
+
+### 服务器需求
+
+1. 阿里云 RocketMQ
+2. pm2
+
+### 编写任务消息实例
+
+```php
+namespace App\Modules\Scheduler\Messages;
+
+
+class TestMessage extends Message
+{
+    public function __construct(string $cmd = 'Scheduler:Test', array $params = [], string $key = '', int $delay = 10)
+    {
+        parent::__construct($cmd, $params, $key, $delay);
+    }
+}
+```
+
+### 发送延时任务消息
+
+可以在代码任何地方使用 Scheduler 门面的 sendMessage 方法发送消息实例
+
+```php
+namespace App\Console\Commands;
+
+use App\Facades\Scheduler\Scheduler;
+use App\Modules\Scheduler\Messages\TestMessage;
+use Illuminate\Console\Command;
+
+class TestCommand extends Command
+{
+    protected $signature = 'Test:Test';
+
+    protected $description = '测试使用脚本';
+
+    /**
+     * 业务处理
+     */
+    public function handle()
+    {
+        $res = Scheduler::sendMessage(new TestMessage());
+
+        dd($res);
+    }
+}
+```
+
+### 消费任务消息
+
+可以在 ecosystem.config.js 文件中指定运行实例和其他配置，也可以继承 ConsumerCommand 自定义消费
+
+```bash
+pm2 start ecosystem.config.js
+```
+
 ## Contributing
 
 Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
