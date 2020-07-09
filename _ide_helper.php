@@ -3,7 +3,7 @@
 
 /**
  * A helper file for Laravel, to provide autocomplete information to your IDE
- * Generated for Laravel 7.16.1 on 2020-06-20 12:40:51.
+ * Generated for Laravel 7.19.0 on 2020-07-09 02:07:46.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -837,6 +837,20 @@ namespace Illuminate\Support\Facades {
             //Method inherited from \Illuminate\Foundation\Application            
                         /** @var \App\Application $instance */
                         return $instance->getLoadedProviders();
+        }
+        
+        /**
+         * Determine if the given service provider is loaded.
+         *
+         * @param string $provider
+         * @return bool 
+         * @static 
+         */ 
+        public static function providerIsLoaded($provider)
+        {
+            //Method inherited from \Illuminate\Foundation\Application            
+                        /** @var \App\Application $instance */
+                        return $instance->providerIsLoaded($provider);
         }
         
         /**
@@ -4682,7 +4696,7 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
-         * Assert if a event was dispatched a number of times.
+         * Assert if an event was dispatched a number of times.
          *
          * @param string $event
          * @param int $times

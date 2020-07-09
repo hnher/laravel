@@ -10,8 +10,10 @@ namespace App\Modules\Scheduler\Messages;
 
 class TestMessage extends Message
 {
-    public function __construct(string $cmd = 'Scheduler:Test', array $params = [], string $key = '', int $delay = 10)
+    public $cmd = 'Scheduler:Test';
+
+    public function __construct(array $params = [], int $delay = 10, string $key = '')
     {
-        parent::__construct($cmd, $params, $key, $delay);
+        parent::__construct($params, $delay, $key);
     }
 }

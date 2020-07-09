@@ -12,9 +12,14 @@ use MQ\Model\TopicMessage;
 
 class Message extends TopicMessage
 {
-    public function __construct(string $cmd, array $params = [], string $key = '',int $delay = 0)
+    /**
+     * @var string 设置调用的命令
+     */
+    public $cmd = '';
+
+    public function __construct(array $params = [], int $delay = 0, string $key = '')
     {
-        parent::__construct(Json::encode(['cmd' => $cmd, 'params' => $params]));
+        parent::__construct(Json::encode(['cmd' => $this->cmd, 'params' => $params]));
 
         if ($delay > 0) {
             $this->setStartDeliverTime((time() + $delay) * 1000);
@@ -24,6 +29,6 @@ class Message extends TopicMessage
             $this->setMessageKey($key);
         }
 
-        $this->setMessageBody(Json::encode(['cmd' => $cmd, 'params' => $params]));
+        $this->setMessageBody(Json::encode(['cmd' => $this->cmd, 'params' => $params]));
     }
 }
