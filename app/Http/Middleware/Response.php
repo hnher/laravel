@@ -9,14 +9,15 @@
 namespace App\Http\Middleware;
 
 use App\Constants\ErrorConstant;
+use App\Facades\Json\Json;
 use Exception as BaseException;
 use Closure;
-use Illuminate\Http\Response;
+use Illuminate\Http\Response as HttpResponse;
 use stdClass;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
-class ResponseMiddleware
+class Response
 {
     private $timer = 0;
 
@@ -63,8 +64,8 @@ class ResponseMiddleware
              */
             if ($exception instanceof HttpException) {
                 $data['code'] = $response->getStatusCode();
-                $data['message'] = ErrorConstant::HTTP_ERROR[$response->getStatusCode()] ?? Response::$statusTexts[$response->getStatusCode()];
-                $response->setContent($data);
+                $data['message'] = ErrorConstant::HTTP_ERROR[$response->getStatusCode()] ?? HttpResponse::$statusTexts[$response->getStatusCode()];
+                $response->setContent(Json::encode($data));
                 //此处必须提前 return 因为所有的异常类均继承 Exception 类
                 return $response;
             }
@@ -75,21 +76,21 @@ class ResponseMiddleware
             if ($exception instanceof BaseException) {
                 $data['code'] = $exception->getCode();
                 $data['message'] = $exception->getMessage();
-                $response->setContent($data);
+                $response->setContent(Json::encode($data));
                 return $response;
             }
         } else {
 
             //此处用于处理验证器异常
             if ($response->getStatusCode() == 422) {
-                $data['message'] = Response::$statusTexts[$response->getStatusCode()];
+                $data['message'] = HttpResponse::$statusTexts[$response->getStatusCode()];
                 $data['data'] = ['validators' => json_decode($response->getContent())];
-                $response->setContent(json_encode($data, true));
+                $response->setContent(Json::encode($data));
                 return $response;
             }
 
-            $data['data'] = $response->original;
-            $response->setContent($data);
+            $data['data'] = empty($response->original) ? new stdClass() : $response->original;
+            $response->setContent(Json::encode($data));
         }
 
         return $response;
