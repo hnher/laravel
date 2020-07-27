@@ -37,9 +37,9 @@ class ConsumerCommand extends Command
     {
         $params = $this->arguments();
 
-        $topic = $params['topic'] ?? '';
-        $groupId = $params['groupId'] ?? '';
-        $instanceId = $params['instanceId'] ?? '';
+        $topic = $params['topic'] ?? config('aliyun.rocketMQ.topic');
+        $groupId = $params['groupId'] ?? config('aliyun.rocketMQ.groupId');
+        $instanceId = $params['instanceId'] ?? config('aliyun.rocketMQ.instanceId');
 
         $consumer = (new Client())->getConsumer($topic, $groupId, $instanceId);
 
