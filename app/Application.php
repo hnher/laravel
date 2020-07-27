@@ -8,6 +8,7 @@
 namespace App;
 
 use Illuminate\Foundation\Application as BaseApplication;
+use Illuminate\Support\Str;
 
 /**
  * 应用程序实例
@@ -25,5 +26,10 @@ class Application extends BaseApplication
     public function __construct($basePath = null)
     {
         parent::__construct($basePath);
+    }
+
+    public function boot()
+    {
+        app('app')->uuid = Str::uuid();
     }
 }
