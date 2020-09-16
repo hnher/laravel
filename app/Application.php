@@ -30,6 +30,7 @@ class Application extends BaseApplication
 
     public function boot()
     {
+        parent::boot();
         app('app')->uuid = Str::uuid();
     }
 }
