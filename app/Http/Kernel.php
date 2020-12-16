@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\Response;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 use App\Http\Middleware\TrustProxies;
 use Fruitcake\Cors\HandleCors;
@@ -76,6 +77,7 @@ class Kernel extends HttpKernel
         'auth.basic' => AuthenticateWithBasicAuth::class,
         'bindings' => SubstituteBindings::class,
         'cache.headers' => SetCacheHeaders::class,
+        'response' => Response::class,
         'can' => Authorize::class,
         'guest' => RedirectIfAuthenticated::class,
         'password.confirm' => RequirePassword::class,

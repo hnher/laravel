@@ -13,6 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::group(['prefix' => '/'], function () {
+Route::group(['prefix' => '/', 'middleware' => 'response'], function () {
     Route::get('/', 'ExampleController@index');
 });

@@ -15,6 +15,6 @@ class ExampleController extends Controller
     {
         Log::info('测试日志', ['channel' => 'test']);
 
-        return view('welcome');
+        return [];
     }
 }
