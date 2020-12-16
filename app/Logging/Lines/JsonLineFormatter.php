@@ -37,10 +37,10 @@ class JsonLineFormatter extends LineFormatter
 
         $datetime = date('Y-m-d H:i:s', time());
 
-        $output = '{"datetime": "'. $datetime .'", "timestamp": "%datetime%", "url": "'. $url .'", "UA": "'. $ua .'", "referer": "'. $referer .'", "uuid": "%uuid%", "channel": "%channel%", "level": "%level_name%", "message": "%message%", "context": [%context%], "extra": %extra%, "cookies": '. $cookies .'}' . "\n";;
-        $vars   = (new NormalizerFormatter())->format($record);
+        $output = '{"app": "%app%", "datetime": "' . $datetime . '", "timestamp": "%datetime%", "url": "' . $url . '", "UA": "' . $ua . '", "referer": "' . $referer . '", "uuid": %uuid%, "domain": "%domain%", "channel": "%channel%", "level": "%level_name%", "message": "%message%", "context": [%context%], "extra": %extra%, "cookies": ' . $cookies . '}' . "\n";        $vars   = (new NormalizerFormatter())->format($record);
         $vars['channel'] = $vars['context']['channel'] ?? 'local';
         $vars['uuid'] = app('app')->uuid;
+        $vars['app'] = config('app.name');
         foreach ($vars['extra'] as $var => $val) {
             if (false !== strpos($output, '%extra.' . $var . '%')) {
                 $output = str_replace('%extra.' . $var . '%', $this->stringify($val), $output);
@@ -48,7 +48,6 @@ class JsonLineFormatter extends LineFormatter
             }
         }
         if (isset($vars['context']['exception']) && !empty($vars['context']['exception'])) {
-            $vars['message'] = '';
             $vars['context'] = $vars['context']['exception'];
             if (isset($vars['context']['trace'])) {
                 unset($vars['context']['trace']);
