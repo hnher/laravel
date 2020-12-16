@@ -7,10 +7,14 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Log;
+
 class ExampleController extends Controller
 {
     public function index()
     {
+        Log::info('测试日志', ['channel' => 'test']);
 
+        return view('welcome');
     }
 }
