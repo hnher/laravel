@@ -12,7 +12,7 @@ class CrossConstant
 {
     const HEADERS = [
         'Access-Control-Allow-Methods' => 'GET, POST, HEADER, OPTION, PUT, DELETE',
-        'Access-Control-Allow-Headers' => 'Origin, Content-Type, Cookie, X-CSRF-TOKEN, Accept, AuthorizationException, X-XSRF-TOKEN',
+        'Access-Control-Allow-Headers' => 'Origin, Content-Type, Cookie, X-CSRF-TOKEN, Accept, Authorization, X-XSRF-TOKEN',
         'Access-Control-Allow-Credentials' => 'true', //允许客户端发送cookie
         'Access-Control-Max-Age' => 1728000,
     ];
